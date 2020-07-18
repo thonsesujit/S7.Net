@@ -1,0 +1,283 @@
+﻿<Window x:Class="S7.Net.Views.ShellView"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialUIDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:S7.Net"
+        mc:Ignorable="d"
+        Title="S7.Net Demo" Height="700" Width="1024" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="HeaderColor">#512da8</SolidColorBrush>
+            <SolidColorBrush x:Key="LeftPanelColor">#4a148c</SolidColorBrush>
+            <SolidColorBrush x:Key="RightPanelColor">#d1c4e9</SolidColorBrush>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid x:Name="OuterGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="Header"
+            Background="{StaticResource HeaderColor}"
+            Grid.ColumnSpan="2">
+            <StackPanel x:Name="HeaderStackPanel">
+                <Button x:Name="ButtonExit"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        BorderBrush="{x:Null}"
+                        Background="{x:Null}"
+                        Foreground="White"
+                        Height="35"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Width="35" Margin="0,0,-2,0">
+                    <materialUIDesign:PackIcon Kind="Power"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+
+
+        <StackPanel x:Name="LeftPanel"
+                    Background="{StaticResource LeftPanelColor}"
+                    Orientation="Vertical"
+                    Grid.Row="1"
+                    Grid.RowSpan="2">
+            <Grid x:Name="GridLeftPanel">
+                <TextBlock x:Name="Menu"
+                           FontSize="16"
+                           FontFamily="WS Simple Gallifreyan"
+                           Foreground="#FFBC96EA" 
+                           HorizontalAlignment="Center"
+                           Text="Menu"
+                           VerticalAlignment="Center" >
+                </TextBlock>
+            </Grid>
+            <Button x:Name="ButtonCovidDashBoard" 
+                    Margin="10">
+                <Grid x:Name="CovidDashBoard"
+                      Height="20"
+                      Width="150">
+                    <materialUIDesign:PackIcon Kind="ViewDashboard"/>
+                    <TextBlock x:Name="TextBlockDASHBOARD"
+                        HorizontalAlignment="Right" 
+                               FontFamily="Champagne &amp; Limousines"
+                               Text="DASHBOARD" />
+                </Grid>
+            </Button>
+            <Button Margin="10">
+                <Grid x:Name="Graph"
+                      Height="20"
+                      Width="150">
+                    <materialUIDesign:PackIcon Kind="ContentPaste"/>
+                    <TextBlock x:Name="TextBlockGRAPH" 
+                               FontFamily="Champagne &amp; Limousines"
+                               HorizontalAlignment="Right" 
+                               Text="GRAPH" />
+                </Grid>
+            </Button>
+        </StackPanel>
+
+        <Grid Background="{StaticResource RightPanelColor}"
+              Grid.Column="1"
+              Grid.Row="1">
+            <ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="GridlabelConfirmed" 
+                      Grid.Column="0">
+                        <Rectangle Height="120" Margin="20" Fill="White" RadiusY="10" RadiusX="10" >
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="10" Color="#ff5722" RenderingBias="Quality" ShadowDepth="1"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+                    </Grid>
+                    <Grid x:Name="GridlabelRecorvered" 
+                          Grid.Column="1">
+                        <Rectangle Height="120" Margin="20" Fill="White" RadiusY="10" RadiusX="10" >
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="20" Color="#76ff03" RenderingBias="Quality" ShadowDepth="1"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+                    </Grid>
+                    <Grid x:Name="Connected" 
+                          Grid.Column="2">
+                        <Rectangle Height="120" Margin="20" Fill="White" RadiusY="10" RadiusX="10" >
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="20" Color= "#ff1744" RenderingBias="Quality" ShadowDepth="1"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+                    </Grid>
+
+                    <Grid x:Name="GridlabelCountries"  
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="1">
+                        <Rectangle Height="50" Margin="20" Fill="White" RadiusY="10" RadiusX="10" >
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="20" Color="#455a64" RenderingBias="Quality" ShadowDepth="1"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+                        <Grid Margin="25" Height="50">
+                            <Grid 
+                                Width="25" 
+                                Height="30" 
+                                Background="#455a64" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" Margin="10 0 0 0">
+                                <Grid.Effect>
+                                    <DropShadowEffect BlurRadius="20" Color="#455a64" RenderingBias="Quality" ShadowDepth="1"/>
+                                </Grid.Effect>
+                                <materialUIDesign:PackIcon
+                                    Kind="Map" 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Margin="5" 
+                                    Foreground="White" 
+                                    Width="20" 
+                                    Height="20"/>
+                            </Grid>
+                            <ComboBox x:Name="ComboBoxCountries"
+                                ItemsSource="{Binding AffectedCountries.countries}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                      SelectedItem="{Binding SelectedCountry}" 
+                                      Margin="0 0 0 5"
+                                      DisplayMemberPath="name"
+                                      SelectedValuePath="iso2"
+                                      Width="300"
+                                      VerticalAlignment="Center"
+                                      materialUIDesign:HintAssist.Hint="Select a Country"/>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="GridlabelDate"  
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        Grid.Row="1">
+                        <Rectangle Height="50" Margin="20" Fill="White" RadiusY="10" RadiusX="10" >
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="20" Color="#bf360c" RenderingBias="Quality" ShadowDepth="1"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+                        <Grid Margin="25" Height="40">
+                            <Grid 
+                                Width="25" 
+                                Height="30" 
+                                Background="#311b92" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" Margin="10 -5 0 0">
+                                <Grid.Effect>
+                                    <DropShadowEffect BlurRadius="20" Color="#FFECECEC" RenderingBias="Quality" ShadowDepth="1"/>
+                                </Grid.Effect>
+                                <materialUIDesign:PackIcon
+                                    Kind="Calendar" 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Margin="5" 
+                                    Foreground="White" 
+                                    Width="20" 
+                                    Height="20"/>
+                            </Grid>
+                            <TextBlock     
+                                    Text="{Binding CovidDetails.lastUpdate}"    
+                                    VerticalAlignment="Center"     
+                                    Foreground="Gray"     
+                                    FontSize="15"     
+                                Margin="40 0 10 0" 
+                                HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="GridLabelRatios"
+                    Grid.Row="3"
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Center"
+                    Width="800"
+                    Height="400">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="169.151"/>
+                                <ColumnDefinition Width="30.849"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="31.479"/>
+                                <ColumnDefinition Width="168.521"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Col 1-->
+                            <Label Grid.Column="1" Grid.Row="1" Content="CPU" FontWeight="SemiBold"  Width="200" Grid.ColumnSpan="2" />
+                            <Label Grid.Column="1" Grid.Row="2" Content="IP Address" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+                            <Label Grid.Column="1" Grid.Row="3" Content="RACK" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+                            <Label Grid.Column="1" Grid.Row="4" Content="Slot" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+
+                            <Button x:Name="connectButton" Grid.Column="1" Grid.Row="5" Content="Connect" Width="200" Click="connectButton_Click" Grid.ColumnSpan="2" Height="44" VerticalAlignment="Top" />
+
+                            <Label Content="Status" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" FontSize="40" Margin="10" />
+
+
+
+                            <!--Col 2-->
+                            <ComboBox x:Name="CPUSelectionComboBox" Grid.Column="3" Grid.Row="1" Margin="0,0,0,0" Width="200"/>
+                            <TextBox x:Name="iPAddressTextBox" Grid.Column="3" Grid.Row="2"/>
+                            <TextBox x:Name="rackTextBox" Grid.Column="3" Grid.Row="3"/>
+                            <TextBox x:Name="slotTextBox" Grid.Column="3" Grid.Row="4"/>
+                            <Button x:Name="disconnectButton" Grid.Column="3" Grid.Row="5" Content="Disconnect" Click="disconnctButton_Click" />
+
+
+                            <!--Col3-->
+                            <Label Grid.Column="4" Grid.Row="1" Content="Address" FontWeight="SemiBold"  Width="200"/>
+                            <Label Grid.Column="4" Grid.Row="2" Content="Present Value" FontWeight="SemiBold"  Width="200"/>
+                            <Label Grid.Column="4" Grid.Row="3" Content="Set Value" FontWeight="SemiBold" />
+                            <Button x:Name="readButton" Grid.Column="4" Grid.Row="5" Content="Read" Click="readButton_Click"/>
+                            <TextBox x:Name="statusTextBox" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="3" Width="200" Margin="100,0"/>
+
+
+                            <!--Col4-->
+                            <TextBox x:Name="addressTextBox" Grid.Column="5" Grid.Row="1" Width="200" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="presentValueTextBox" Grid.Column="5" Grid.Row="2" Width="200" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="setValueTextBox" Grid.Column="5" Grid.Row="3" Width="200" Grid.ColumnSpan="2"/>
+                            <Button x:Name="WriteButton" Grid.Column="5" Grid.Row="5" Content="Write" Grid.ColumnSpan="2" Click="writeButton_Click" />
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+
+            </ScrollViewer>
+
+        </Grid>
+
+
+    </Grid>
+
+</Window>
+
